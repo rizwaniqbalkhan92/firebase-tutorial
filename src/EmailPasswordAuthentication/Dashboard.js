@@ -1,34 +1,36 @@
 import React from 'react'
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {signOut } from "firebase/auth";
+import {auth}  from './firebaseConfig'
+import {useNavigate,useLocation,useParams}   from 'react-router-dom';
 
 const Dashboard = () => {
-  const auth = getAuth();
+const location=useLocation();
+const location2=useParams();
+console.log('state',location2)
+  const navigation=useNavigate()
 
-  function logout(){
+function Signout(){
+  signOut(auth).then(() => {
+    // Sign-out successful.
+  alert('Logout Successfuly..>!!')
+    navigation('/SignIn');
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        console.log(user);
-        // ...
-      } else {
-        // User is signed out
-        // ...
-        alert('logout')
+  }).catch((error) => {
+    // An error happened.
+    alert('error',error)
+  });
 
-      }
-    });
-
-
-  }
-
+}
 
   return (
     <div>
       <h1>DASHBOARD</h1>
-      <button onClick={logout} >LOGOUT</button>
+
+
+      
+<button onClick={Signout}>LOGOUT</button>
+ 
+ 
     </div>
   )
 }

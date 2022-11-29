@@ -6,9 +6,11 @@ import {
   Link,
   Routes
 } from "react-router-dom";
-import SignIn from "./Firebase/SignIn";
-import SignUp from "./Firebase/SignUp";
-import DashboardComp  from './Firebase/Dashboard';
+import SignUp from "./EmailPasswordAuthentication/SignUp";
+import SignIn from './EmailPasswordAuthentication/SignIn';
+import DashboardComp from "./EmailPasswordAuthentication/Dashboard";
+import LoginWithGoogle from "./GoogleAuthentication/LoginWithGoogle";
+
 
 
 export default function BasicExample() {
@@ -26,6 +28,11 @@ export default function BasicExample() {
       </Routes>
       <Routes>
         <Route exact path="/Dashboard" element={<DashboardComp/>}/>
+     
+      </Routes>
+      <Routes>
+        <Route exact path="/LoginWithGoogle" element={<LoginWithGoogle/>}/>
+     
       </Routes>
 
   </Router>
@@ -42,18 +49,3 @@ function Home() {
   );
 }
 
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
-    </div>
-  );
-}
